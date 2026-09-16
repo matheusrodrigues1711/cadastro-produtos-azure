@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Formulário de Produto</title>
-</head>
-<body>
-    <h1>{% if object %}Editar{% else %}Novo{% endif %} Produto</h1>
+{% extends 'produtos/base.html' %}
+{% block title %}{% if object %}Editar{% else %}Novo{% endif %} Produto{% endblock %}
+{% block content %}
+<h1 class="h3 mb-3">{% if object %}Editar{% else %}Novo{% endif %} Produto</h1>
+<div class="card shadow-sm p-4" style="max-width: 500px;">
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Salvar</button>
+        {% for field in form %}
+        <div class="mb-3">
+            <label class="form-label">{{ field.label }}</label>
+            {{ field }}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{% url 'produto_list' %}" class="btn btn-link">Cancelar</a>
     </form>
-    <a href="{% url 'produto_list' %}">Voltar</a>
-</body>
-</html>
+</div>
+{% endblock %}

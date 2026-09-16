@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Excluir Produto</title>
-</head>
-<body>
-    <h1>Excluir Produto</h1>
-    <p>Tem certeza que deseja excluir "<strong>{{ object.nome }}</strong>"?</p>
+{% extends 'produtos/base.html' %}
+{% block title %}Excluir Produto{% endblock %}
+{% block content %}
+<h1 class="h3 mb-3">Excluir Produto</h1>
+<div class="card shadow-sm p-4" style="max-width: 500px;">
+    <p>Tem certeza que deseja excluir <strong>"{{ object.nome }}"</strong>?</p>
     <form method="post">
         {% csrf_token %}
-        <button type="submit">Sim, excluir</button>
+        <button type="submit" class="btn btn-danger">Sim, excluir</button>
+        <a href="{% url 'produto_list' %}" class="btn btn-link">Cancelar</a>
     </form>
-    <a href="{% url 'produto_list' %}">Cancelar</a>
-</body>
-</html>
+</div>
+{% endblock %}
