@@ -1,3 +1,5 @@
+import os
+
 """
 Django settings for core project.
 
@@ -37,8 +39,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
     'produtos',
 ]
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -125,4 +142,16 @@ MAILERS = {
     'default': {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
+}
+
+SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+        'APPS': [
+            {
+                'client_id': os.environ.get('GITHUB_CLIENT_ID'),
+                'secret': os.environ.get('GITHUB_CLIENT_SECRET'),
+                'key': ''
+            }
+        ]
+    }
 }
