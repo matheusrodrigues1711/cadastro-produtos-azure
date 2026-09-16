@@ -28,6 +28,7 @@ SECRET_KEY = 'django-insecure-ay^02-__#a^a9i_49w*t4&cn#lulxl+^#&9&5dk*^x82lb6(7l
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://webapp-produtos-2026-accnc8czdwhydxbt.brazilsouth-01.azurewebsites.net']
 
 
 # Application definition
